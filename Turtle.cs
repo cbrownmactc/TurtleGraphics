@@ -27,6 +27,7 @@ namespace TurtleGraphics
         private List<Line>  _history = new();
         private bool        _isDown = true;
         private Shape       _pointer;
+        private Brush       _pointerFill = Brushes.Blue;
         private System.Timers.Timer _timer;
         private double      _timerDelay = 2;
         private Dispatcher  _uiDispatcher;
@@ -46,7 +47,7 @@ namespace TurtleGraphics
             _timer.Enabled = true;
             
             // Add pointer
-            _pointer = getTriangle(0, 0, 10, 10, Brushes.Black, Brushes.Blue);
+            _pointer = getTriangle(0, 0, 10, 10, Brushes.Black, _pointerFill);
             _canvas.Children.Add(_pointer);
 
             // Center turtle
@@ -105,7 +106,6 @@ namespace TurtleGraphics
         /// </summary>
         public void Home()
         {
-
             PenUp();
             GoTo(
                 (int)_canvas.ActualWidth / 2,
@@ -205,6 +205,25 @@ namespace TurtleGraphics
                 SkipDelay = true
             });
         } 
+
+        /// <summary>
+        /// Change the color of the pointer.
+        /// </summary>
+        /// <param name="brush"></param>
+        public void SetPointerColor(Brush brush)
+        {
+            _actionQueue.Enqueue(new TurtleAction()
+            {
+                ActionToRun = () => {
+                    _pointerFill = brush;
+                    _canvas.Children.Remove(_pointer);
+                    _pointer = getTriangle(0, 0, 10, 10, Brushes.Black, _pointerFill);
+                    setAngle(_angle); // So that it rotates the right way
+                    _canvas.Children.Add(_pointer);
+                },
+                SkipDelay = true
+            });
+        }
 
         /// <summary>
         /// Set width of brush to specified number of pixels.
