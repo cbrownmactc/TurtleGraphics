@@ -102,6 +102,20 @@ namespace TurtleGraphics
         }
 
         /// <summary>
+        /// Will move the location drawing a line if pendown. Forward should use this
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void GoTo(int x, int y)
+        {
+            _actionQueue.Enqueue(new TurtleAction()
+            {
+                ActionToRun = () => { goTo(x, y); },
+                SkipDelay = true
+            });
+        }
+
+        /// <summary>
         /// Move pen to the center of the canvas and reset angle to 0.
         /// </summary>
         public void Home()
@@ -124,6 +138,20 @@ namespace TurtleGraphics
             {
                 ActionToRun = () => left(degrees),
                 SkipDelay = true
+            });
+        }
+
+        /// <summary>
+        /// Move to a specific location, this will NOT write regardless of pen state.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void MoveTo(int x, int y)
+        {
+            _actionQueue.Enqueue(new TurtleAction()
+            {
+                ActionToRun = () => moveTo(x, y),
+                SkipDelay = false
             });
         }
 
@@ -207,6 +235,24 @@ namespace TurtleGraphics
         } 
 
         /// <summary>
+        /// Set brush color to aRGB value
+        /// </summary>
+        /// <param name="alpha"></param>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
+        public void SetBrush(byte alpha, byte red, byte green, byte blue)
+        {
+            _actionQueue.Enqueue(new TurtleAction()
+            {
+                ActionToRun = () =>
+                {
+                    _brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(alpha, red, green, blue));
+                }
+            });
+        }
+
+        /// <summary>
         /// Change the color of the pointer.
         /// </summary>
         /// <param name="brush"></param>
@@ -238,19 +284,6 @@ namespace TurtleGraphics
             });
         }
 
-        /// <summary>
-        /// Will move the location drawing a line if pendown. Forward should use this
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public void GoTo(int x, int y)
-        {
-            _actionQueue.Enqueue(new TurtleAction()
-            {
-                ActionToRun = () => { goTo(x, y); },
-                SkipDelay = true
-            });
-        }
         #endregion --- Public Methods ---
 
         #region --- Private Methods ---
@@ -307,6 +340,14 @@ namespace TurtleGraphics
         private void left(float degrees)
         {
             setAngle(_angle - degrees);
+        }
+
+        private void moveTo(int x, int y)
+        {
+            bool isDown = _isDown;
+            _isDown = false;
+            goTo(x, y);
+            _isDown = isDown;
         }
 
         private void processActions(Object source, ElapsedEventArgs e)

@@ -34,7 +34,7 @@ namespace TurtleLair
         private void Me_Click(object sender, RoutedEventArgs e)
         {
             Turtle t = new Turtle(canvas);
-
+            t.Forward(100);
         }
 
         private void Demo1_Click(object sender, RoutedEventArgs e)
