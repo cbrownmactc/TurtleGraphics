@@ -45,13 +45,12 @@ namespace TurtleGraphics
             _timer.Elapsed += processActions;
             _timer.AutoReset = true;
             _timer.Enabled = true;
-            
+
+            Home();
+
             // Add pointer
             _pointer = getTriangle(0, 0, 10, 10, Brushes.Black, _pointerFill);
             _canvas.Children.Add(_pointer);
-
-            // Center turtle
-            Home();
         }
 
         ~Turtle()

@@ -5,15 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurtleTest"
         mc:Ignorable="d"
-        Title="The Turtle's Lair" Height="800" Width="800" Name="mainWindow">
+        Title="The Turtle's Lair" Height="800" Width="800" Name="mainWindow" Loaded="mainWindow_Loaded">
     <Grid x:Name="mainGrid">
 
         <Canvas x:Name="canvas">
             <Button x:Name="Clear"  Content="Clear" Canvas.Left="10" Canvas.Top="180" Click="Clear_Click" Width="60"/>
-            <Button x:Name="Me" Canvas.Left ="10" Content="Mine!" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Me_Click" Width="60" Canvas.Top="21"/>
+            <Button x:Name="Home" Canvas.Left ="10" Content="Home" HorizontalAlignment="Center"  VerticalAlignment="Top" Click="Me_Click" Width="60" Canvas.Top="155"/>
             <Button x:Name="Demo1" Canvas.Left ="10" Content="Demo #1" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo1_Click" Width="60" Canvas.Top="51"/>
             <Button x:Name="Demo2" Canvas.Left ="10" Content="Demo #2" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo2_Click" Width="60" Canvas.Top="81"/>
             <Button x:Name="Demo3" Canvas.Left ="10" Content="Demo #3" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo3_Click" Width="60" Canvas.Top="111"/>
+            <Button x:Name="Forward" Content="F" Canvas.Left="72" Canvas.Top="241" Click="Forward_Click"/>
+            <Button x:Name="Backward" Content="B" Canvas.Left="72" Canvas.Top="280" Click="Backward_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="Left" Content="L" Canvas.Left="40" Canvas.Top="251" Click="Left_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="Right" Content="R" Canvas.Left="105" Canvas.Top="251" Click="Right_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ToggleButton x:Name="PenDown" Content="Pen Down" Canvas.Left="37" Canvas.Top="341" IsChecked="True" Click="PenDown_Click"/>
+            <RadioButton x:Name="ChangeToRed" Content="Red" Canvas.Left="40" Canvas.Top="380" Checked="ChangeToRed_Checked"/>
+            <RadioButton x:Name="ChangeToBlue" Content="Blue" Canvas.Left="40" Canvas.Top="400" Checked="ChangeToBlue_Checked"/>
         </Canvas>
 
     </Grid>
