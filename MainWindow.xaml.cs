@@ -27,23 +27,18 @@ namespace TurtleLair
     /// </summary>
     public partial class MainWindow : Window
     {
-        Turtle t;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void mainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            // If we try to do this in the constructor
-            // the canvas size won't be correct yet
-            t = new Turtle(canvas);
-        }
+   
 
         private void Me_Click(object sender, RoutedEventArgs e)
         {
-            t.Home();
+            Turtle t = new Turtle(canvas);
+            t.Forward(100);
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -104,5 +99,9 @@ namespace TurtleLair
 
         #endregion Demo Stuff
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
