@@ -14,7 +14,12 @@
             <Button x:Name="Demo1" Canvas.Left ="10" Content="Demo #1" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo1_Click" Width="60" Canvas.Top="51"/>
             <Button x:Name="Demo2" Canvas.Left ="10" Content="Demo #2" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo2_Click" Width="60" Canvas.Top="81"/>
             <Button x:Name="Demo3" Canvas.Left ="10" Content="Demo #3" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo3_Click" Width="60" Canvas.Top="111"/>
-            <Button Content="Forward" Canvas.Left="20" Canvas.Top="273" Click="Button_Click"/>
+            <Button x:Name="Forward" Content="Forward" Canvas.Left="16" Canvas.Top="232" Click="Forward_Click"/>
+            <Button x:Name="Left" Content="Left" Canvas.Left="-17" Canvas.Top="273" Click="Left_Click"/>
+            <Slider x:Name="RedSlider" Canvas.Left="54" Canvas.Top="283" Width="220" Maximum="255" ValueChanged="RedSlider_ValueChanged"/>
+            <Slider x:Name="GreenSlider" Canvas.Left="54" Canvas.Top="319" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Maximum="255" ValueChanged="RedSlider_ValueChanged"/>
+            <Slider x:Name="BlueSlider" Canvas.Left="54" Canvas.Top="360" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Maximum="255" ValueChanged="RedSlider_ValueChanged"/>
+            <Canvas x:Name="ColorPanel" Height="80" Canvas.Left="16" Canvas.Top="398"  Width="80"/>
 
         </Canvas>
 

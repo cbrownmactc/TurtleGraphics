@@ -27,13 +27,14 @@ namespace TurtleLair
     /// </summary>
     public partial class MainWindow : Window
     {
+        Turtle t;
+        private int distance = 20;
+        private int angle = 45;
 
         public MainWindow()
         {
             InitializeComponent();
         }
-
-   
 
         private void Me_Click(object sender, RoutedEventArgs e)
         {
@@ -99,9 +100,38 @@ namespace TurtleLair
 
         #endregion Demo Stuff
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Forward_Click(object sender, RoutedEventArgs e)
         {
+            t.SetBrush(255,
+                (byte)RedSlider.Value,
+                (byte)GreenSlider.Value,
+                (byte)BlueSlider.Value);
+            t.Forward(distance);
 
         }
+
+        private void mainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            t = new Turtle(canvas);
+        }
+
+        private void Left_Click(object sender, RoutedEventArgs e)
+        {
+            t.Left(angle);
+        }
+
+        private void RedSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            ColorPanel.Background =
+                new SolidColorBrush(
+                    System.Windows.Media.Color.FromArgb(
+                    255,
+                    (byte)RedSlider.Value,
+                    (byte)GreenSlider.Value,
+                    (byte)BlueSlider.Value)
+                );
+        }
+
+
     }
 }
