@@ -38,7 +38,7 @@ namespace TurtleGraphics
         {
             _canvas = canvas;
             _uiDispatcher = canvas.Dispatcher;
-            //_debug = debug;
+            //_debug = debug; 
 
             // Configure timer
             _timer = new System.Timers.Timer(_timerDelay);
