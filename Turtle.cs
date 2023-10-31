@@ -351,18 +351,26 @@ namespace TurtleGraphics
 
         private void processActions(Object source, ElapsedEventArgs e)
         {
-            _uiDispatcher.Invoke(() =>
+            try
             {
-                // Skip delay not implemented yet
-                // Putting in while loop hung display for some reason
-                bool processNext = true;
-                if (_actionQueue.Count > 0)
+                _uiDispatcher.Invoke(() =>
                 {
-                    TurtleAction a = _actionQueue.Dequeue();
-                    a.ActionToRun();
-                    processNext = a.SkipDelay;
-                }
-            });
+                    // Skip delay not implemented yet
+                    // Putting in while loop hung display for some reason
+                    bool processNext = true;
+                    if (_actionQueue.Count > 0)
+                    {
+                        TurtleAction a = _actionQueue.Dequeue();
+                        a.ActionToRun();
+                        processNext = a.SkipDelay;
+                    }
+
+                });
+            } catch (TaskCanceledException ex)
+            {
+                // Nothing to see here, task canceled because app is terminating
+            }
+
         }
         
         private void right(float degrees)
