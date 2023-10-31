@@ -5,23 +5,115 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurtleTest"
         mc:Ignorable="d"
-        Title="The Turtle's Lair" Height="600" Width="800" Name="mainWindow" Loaded="mainWindow_Loaded">
+        Title="The Turtle's Lair" Height="800" Width="960" Name="mainWindow" Loaded="mainWindow_Loaded" ResizeMode="NoResize">
     <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="800"/>
+        </Grid.ColumnDefinitions>
 
-        <Canvas x:Name="canvas" Margin="44,-26,-44,25">
-            <Button x:Name="Clear"  Content="Clear" Canvas.Left="10" Canvas.Top="180" Click="Clear_Click" Width="60"/>
-            <Button x:Name="Home" Canvas.Left ="10" Content="Home" HorizontalAlignment="Center"  VerticalAlignment="Top" Click="Me_Click" Width="60" Canvas.Top="155"/>
-            <Button x:Name="Demo1" Canvas.Left ="10" Content="Demo #1" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo1_Click" Width="60" Canvas.Top="51"/>
-            <Button x:Name="Demo2" Canvas.Left ="10" Content="Demo #2" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo2_Click" Width="60" Canvas.Top="81"/>
-            <Button x:Name="Demo3" Canvas.Left ="10" Content="Demo #3" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo3_Click" Width="60" Canvas.Top="111"/>
-            <Button x:Name="Forward" Content="Forward" Canvas.Left="16" Canvas.Top="232" Click="Forward_Click"/>
-            <Button x:Name="Left" Content="Left" Canvas.Left="-17" Canvas.Top="273" Click="Left_Click"/>
-            <Slider x:Name="RedSlider" Canvas.Left="54" Canvas.Top="283" Width="220" Maximum="255" ValueChanged="RedSlider_ValueChanged"/>
-            <Slider x:Name="GreenSlider" Canvas.Left="54" Canvas.Top="319" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Maximum="255" ValueChanged="RedSlider_ValueChanged"/>
-            <Slider x:Name="BlueSlider" Canvas.Left="54" Canvas.Top="360" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Maximum="255" ValueChanged="RedSlider_ValueChanged"/>
-            <Canvas x:Name="ColorPanel" Height="80" Canvas.Left="16" Canvas.Top="398"  Width="80"/>
+        <!-- Grid for Challenge / Solution Buttons -->
+        <Grid HorizontalAlignment="Center" Height="118" VerticalAlignment="Top" Width="160">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
+            <!-- Show Challenge Buttons -->
+            <Button x:Name="show1" Content="Show #1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Grid.Row="0" Margin="0,0,0,2" Click="show1_Click"/>
+            <Button x:Name="show2" Content="Show #2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Grid.Row="1" Click="show2_Click"/>
+            <Button x:Name="show3" Content="Show #3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Grid.Row="2" Click="show3_Click"/>
+            <Button x:Name="show4" Content="Show #4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Grid.Row="3" Click="show4_Click"/>
+            <Button x:Name="show5" Content="Show #5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Grid.Row="4" Click="show5_Click"/>
+
+            <!-- Solve Challenge Buttons -->
+            <Button x:Name="solve1" Content="Solve #1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Grid.Row="0" Grid.Column="1" Click="solve1_Click"/>
+            <Button x:Name="solve2" Content="Solve #2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Grid.Row="1" Grid.Column="1" Click="solve2_Click"/>
+            <Button x:Name="solve3" Content="Solve #3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Grid.Row="2" Grid.Column="1" Click="solve3_Click"/>
+            <Button x:Name="solve4" Content="Solve #4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Grid.Row="3" Grid.Column="1" Click="solve4_Click"/>
+            <Button x:Name="solve5" Content="Solve #5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Grid.Row="4" Grid.Column="1" Margin="0,0,0,2" Click="solve5_Click"/>
+        </Grid>
+
+        <!-- Grid For Control Buttons -->
+        <Grid HorizontalAlignment="Center" Height="70" VerticalAlignment="Top" Width="160" Margin="0,131,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="Clear"  Content="Clear" Canvas.Left="10" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Clear_Click" Width="60" Height="30"  Grid.Row="0" Grid.Column="0"/>
+            <Button x:Name="Home" Canvas.Left ="10" Content="Home" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Home_Click" Width="60"  Height="30" Grid.Row="0" Grid.Column="1"/>
+            <Button x:Name="Forward" Content="Fwd"  HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Forward_Click" Height="30" Width="60"  Grid.Row="1" Grid.Column="0"/>
+            <Button x:Name="Left" Content="Left"  Click="Left_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="60" Height="30"  Grid.Row="1" Grid.Column="1"/>
+        </Grid>
+
+        <!-- Stack Demo Buttons -->
+        <StackPanel Margin="0,210,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="70">
+            <Button x:Name="Demo1" Content="Demo #1" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Demo1_Click" Width="80"  />
+            <Button x:Name="Demo2" Content="Demo #2" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo2_Click" Width="80" />
+            <Button x:Name="Demo3" Content="Demo #3" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Demo3_Click" Width="80"  />
+        </StackPanel>
+
+
+        <Slider x:Name="RedSlider"  Width="38" Maximum="255" ValueChanged="ColorSlider_ValueChanged" Orientation="Vertical" HorizontalAlignment="Left" Height="167" VerticalAlignment="Top" Margin="18,292,0,0"/>
+        <Slider x:Name="GreenSlider" Orientation="Vertical"  Width="38" Height="167"  HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="255" ValueChanged="ColorSlider_ValueChanged" Margin="67,292,0,0" />
+        <Slider x:Name="BlueSlider" Orientation="Vertical"  Width="38" Height="167"  HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="255" ValueChanged="ColorSlider_ValueChanged" Margin="112,292,0,0"/>
+        <Label x:Name="lblRed" Content="0" HorizontalAlignment="Left" Margin="18,459,0,0" VerticalAlignment="Top" Height="16" Width="19" HorizontalContentAlignment="Center" FontSize="10" Padding="0,0,0,0"/>
+        <Label x:Name="lblGreen" Content="0" HorizontalAlignment="Left" Margin="66,459,0,0" VerticalAlignment="Top" Height="16" Width="19" HorizontalContentAlignment="Center" FontSize="10" Padding="0,0,0,0"/>
+        <Label x:Name="lblBlue" Content="0" HorizontalAlignment="Left" Margin="114,459,0,0" VerticalAlignment="Top" Height="16" Width="19" HorizontalContentAlignment="Center" FontSize="10" Padding="0,0,0,0"/>
+        <Canvas x:Name="ColorPanel" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="140" Height="100" Margin="10,475,0,0" Background="Black"/>
+        <Button x:Name="Special" Content="💥 Special 💥" HorizontalAlignment="Center"  VerticalAlignment="Top"  Width="96"  Height="30"  Margin="0,622,0,0" Click="Special_Click"/>
+        <!-- Grid to display behind turtle canvas -->
+        <Grid x:Name="gridCoordinates" Grid.Column="1" MouseMove="Canvas_MouseMove">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+        </Grid>
+
+        <!-- Canvas for Turtle -->
+        <Canvas x:Name="canvas" Grid.Column="1" MouseMove="Canvas_MouseMove">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/images/turtles-lair.png" Opacity=".5"/>
+            </Canvas.Background>
+            <Label x:Name="lblCoords" Content="0, 0" Canvas.Left="381" Canvas.Top="732" RenderTransformOrigin="-0.158,-0.191" FontSize="16"/>
         </Canvas>
+
+
+
+
 
     </Grid>
 </Window>
